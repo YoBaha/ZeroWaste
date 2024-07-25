@@ -20,7 +20,7 @@ $selected_ids = array_keys($_SESSION['cart']);
 $sql = "SELECT ProductID, title, price, image FROM mycart WHERE ProductID IN (".implode(',', $selected_ids).")";
 
 $stmt = $db->prepare($sql);
-$stmt->execute();
+//$stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Check if the "sort" button is pressed
@@ -89,7 +89,7 @@ foreach ($_SESSION['cart'] as $product_id => $quantity) {
     $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
     $stmt->execute();
     $price = $stmt->fetchColumn();
-    $total_price += $price * $quantity;
+    //$total_price += $price * $quantity;
 }
 ?>
 
@@ -143,7 +143,12 @@ if (isset($_POST['sort'])) {
   <form action="payment.php" method="post">
     <input type="submit" name="proceed_to_payment" value="Proceed to Payment">
   </form>
+  <a href="backoffice/index.html" class="btn">
+    <img src="index.png" alt="Index">
+    <span>Index</span>
+  </a>
 </div>
+
 
 
 

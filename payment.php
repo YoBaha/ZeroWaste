@@ -1,54 +1,12 @@
-<style>
-  form {
-    margin: 0 auto;
-    width: 50%;
-  }
-</style>
-
-<title>Zero Waste</title>
-<h2>Payment Page</h2>
-
-	<style>
-		/* Style for the waste word */
-		.orange {
-			color: orange;
-			font-weight: bold;
-            font-size: 50px;
-		}
-
-		/* Style for the logo */
-		.logo {
-			width: 50px;
-			height: 50px;
-			margin-left: 10px;
-		}
-	</style>
-    <div style="text-align: center;">
-    <h2>Zero<span class="orange">Waste</span> <img src="http://localhost/mycartcode/icon.png" alt="Logo" class="logo"></h2>
-</div>
-
-<form method="post" action="process_payment.php">
-<label for="name">Name:</label>
-<input type="text" id="name" name="name" pattern="[A-Za-z]+" required><br>
-
-
-  <label for="card_number">Card Number:</label>
-  <input type="text" id="card_number" name="card_number" maxlength="16" required><br>
-
-  <label for="expiration_date">Expiration Date (MM/YY):</label>
-  <input type="text" id="expiration_date" name="expiration_date" placeholder="MM/YY" required><br>
-
-  <label for="cvc">CVC:</label>
-  <input type="text" id="cvc" name="cvc" minlength="3" maxlength="3" required><br>
-
-  <input type="submit" value="Submit Payment">
-  
+<form method="post" action="process_payment.php" id="payment-form">
+  <!-- form inputs -->
 </form>
-<button onclick="window.location.href='index.php'">Go To Home</button>
+
+<button id="submit-payment-btn" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit Payment</button>
 
 <script>
   // Get the form element
-  const form = document.querySelector('form');
+  const form = document.querySelector('#payment-form');
 
   // Add a submit event listener to the form
   form.addEventListener('submit', function(event) {
@@ -59,7 +17,6 @@
     const cardNumberInput = document.getElementById('card_number');
 
     // Validate the card number format
-    
     if (cardNumberInput.value.length < 16) {
       alert('Card number must have at least 16 digits.');
       return;
@@ -86,41 +43,16 @@
     // Display a success message
     alert('Payment successful!');
 
-    // Redirect to the home page
+    // Redirect to the invoice page
     window.location.href = 'invoice.php';
   });
+
+  // Get the submit payment button element
+  const submitPaymentBtn = document.querySelector('#submit-payment-btn');
+
+  // Add a click event listener to the button
+  submitPaymentBtn.addEventListener('click', function() {
+    // Submit the payment form
+    form.submit();
+  });
 </script>
-
-<form method="post" action="process_payment.php">
-  <!-- form inputs -->
-
-</form>
-
-<img src="http://localhost/mycartcode/n.png" alt="payment methods">
-
-<style>
-  .cart-buttons input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-input[type="submit"]:active {
-  background-color: #3e8e41;
-}

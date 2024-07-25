@@ -405,12 +405,16 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="products-container">
   <?php foreach ($products as $product): ?>
     <div class="product-item">
+
+
       <img src="data:image/jpeg;base64,<?= base64_encode($product['image']) ?>" alt="<?= $product['title'] ?>">
       <h3><?= $product['title'] ?></h3>
       <p>Price: $<?= number_format($product['price'], 2) ?></p>
       <form action="addtocart.php" method="post">
         <input type="hidden" name="product_id" value="<?= $product['ProductID'] ?>">
         <input type="submit" name="add_to_cart" value="Add to Cart">
+	
+
       </form>
       <form action="deleteproduct.php" method="post">
         <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
